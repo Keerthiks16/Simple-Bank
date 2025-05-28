@@ -26,12 +26,12 @@ class User {
 
     try {
       const [result] = await dbPromise.execute(sql, [
-        userData.username,
-        userData.email,
-        userData.age,
-        userData.gender,
-        userData.typeofuser,
-        userData.password,
+        userData.username || null,
+        userData.email || null,
+        userData.age || null,
+        userData.gender || null,
+        userData.typeofuser || null,
+        userData.password || null,
         userData.balance || 1000.0,
       ]);
       return result;
@@ -103,7 +103,7 @@ class User {
   // Get all customers (for banker view)
   static async getAllCustomers() {
     const sql =
-      "SELECT id, username, email, balance, created_at FROM users WHERE typeofuser = 'customer'";
+      "SELECT id, username, email, balance FROM users WHERE typeofuser = 'customer'";
 
     try {
       const [rows] = await dbPromise.execute(sql);

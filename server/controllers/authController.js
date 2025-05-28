@@ -24,7 +24,9 @@ class AuthController {
 
       // Validation
       if (!username || !email || !password) {
-        return res.status(400).json({ Error: "Missing required fields" });
+        return res
+          .status(400)
+          .json({ Error: "Username, email, and password are required" });
       }
 
       // Check if user already exists
@@ -45,14 +47,15 @@ class AuthController {
         SALT_ROUNDS
       );
 
-      // Create user
+      // Create user data with proper defaults
       const userData = {
-        username,
-        email,
-        age,
-        gender,
-        typeofuser: role,
+        username: username,
+        email: email,
+        age: age || null,
+        gender: gender || null,
+        typeofuser: role || "customer",
         password: hashedPassword,
+        balance: 1000.0,
       };
 
       await User.create(userData);

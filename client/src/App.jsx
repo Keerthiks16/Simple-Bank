@@ -1,18 +1,29 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React, { useContext } from "react";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { ToastContainer } from "react-toast";
 import { Toaster } from "react-hot-toast";
+import { UserContext } from "./context/UserContext";
 
 const App = () => {
+  const { user, loading } = useContext(UserContext);
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/signup" element={<Signup />}></Route>
+        <Route
+          path="/"
+          element={user ? <Home /> : <Navigate to="/login" />}
+        ></Route>
+        <Route
+          path="/login"
+          element={!user ? <Login /> : <Navigate to="/" />}
+        ></Route>
+        <Route
+          path="/signup"
+          element={!user ? <Signup /> : <Navigate to="/" />}
+        ></Route>
       </Routes>
       <Toaster />
     </BrowserRouter>
