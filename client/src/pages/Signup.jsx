@@ -52,83 +52,179 @@ const Signup = () => {
     }
   };
 
+  const inputStyle = {
+    outline: "none",
+  };
+
+  const handleFocus = (e) => {
+    e.target.style.boxShadow = "0 0 0 2px rgba(0, 171, 228, 0.2)";
+    e.target.style.borderColor = "#00ABE4";
+  };
+
+  const handleBlur = (e) => {
+    e.target.style.boxShadow = "none";
+    e.target.style.borderColor = "#d1d5db";
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-center">Sign Up</h2>
+    <div
+      className="min-h-screen flex items-center justify-center py-12 px-4"
+      style={{ backgroundColor: "#E9F1FA" }}
+    >
+      <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 w-full max-w-md">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold mb-2" style={{ color: "#00ABE4" }}>
+            Create Account
+          </h2>
+          <p className="text-gray-600">Join us today</p>
+        </div>
 
-        {message && <p className="text-green-600 mb-4">{message}</p>}
-        {error && <p className="text-red-600 mb-4">{error}</p>}
+        {message && (
+          <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg mb-6">
+            {message}
+          </div>
+        )}
+        {error && (
+          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6">
+            {error}
+          </div>
+        )}
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            className="w-full border px-4 py-2 rounded-lg"
-            value={formData.username}
-            onChange={handleChange}
-            required
-          />
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <div>
+            <label className="block text-gray-700 text-sm font-medium mb-2">
+              Username *
+            </label>
+            <input
+              type="text"
+              name="username"
+              placeholder="Enter your username"
+              className="w-full border border-gray-300 px-4 py-3 rounded-lg transition-all duration-200"
+              style={inputStyle}
+              value={formData.username}
+              onChange={handleChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              required
+            />
+          </div>
 
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            className="w-full border px-4 py-2 rounded-lg"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
+          <div>
+            <label className="block text-gray-700 text-sm font-medium mb-2">
+              Email *
+            </label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              className="w-full border border-gray-300 px-4 py-3 rounded-lg transition-all duration-200"
+              style={inputStyle}
+              value={formData.email}
+              onChange={handleChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              required
+            />
+          </div>
 
-          <input
-            type="number"
-            name="age"
-            placeholder="Age (optional)"
-            className="w-full border px-4 py-2 rounded-lg"
-            value={formData.age}
-            onChange={handleChange}
-          />
+          <div>
+            <label className="block text-gray-700 text-sm font-medium mb-2">
+              Age
+            </label>
+            <input
+              type="number"
+              name="age"
+              placeholder="Enter your age (optional)"
+              className="w-full border border-gray-300 px-4 py-3 rounded-lg transition-all duration-200"
+              style={inputStyle}
+              value={formData.age}
+              onChange={handleChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+            />
+          </div>
 
-          <select
-            name="gender"
-            className="w-full border px-4 py-2 rounded-lg"
-            value={formData.gender}
-            onChange={handleChange}
-          >
-            <option value="">Select Gender (optional)</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-          </select>
+          <div>
+            <label className="block text-gray-700 text-sm font-medium mb-2">
+              Gender
+            </label>
+            <select
+              name="gender"
+              className="w-full border border-gray-300 px-4 py-3 rounded-lg transition-all duration-200"
+              style={inputStyle}
+              value={formData.gender}
+              onChange={handleChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+            >
+              <option value="">Select Gender (optional)</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
 
-          <select
-            name="role"
-            className="w-full border px-4 py-2 rounded-lg"
-            value={formData.role}
-            onChange={handleChange}
-          >
-            <option value="customer">Customer</option>
-            <option value="banker">Banker</option>
-          </select>
+          <div>
+            <label className="block text-gray-700 text-sm font-medium mb-2">
+              Role *
+            </label>
+            <select
+              name="role"
+              className="w-full border border-gray-300 px-4 py-3 rounded-lg transition-all duration-200"
+              style={inputStyle}
+              value={formData.role}
+              onChange={handleChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+            >
+              <option value="customer">Customer</option>
+              <option value="banker">Banker</option>
+            </select>
+          </div>
 
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            className="w-full border px-4 py-2 rounded-lg"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
+          <div>
+            <label className="block text-gray-700 text-sm font-medium mb-2">
+              Password *
+            </label>
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              className="w-full border border-gray-300 px-4 py-3 rounded-lg transition-all duration-200"
+              style={inputStyle}
+              value={formData.password}
+              onChange={handleChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              required
+            />
+          </div>
+
           <button
             type="submit"
-            onClick={handleSubmit}
-            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700"
+            className="w-full text-white py-3 rounded-lg font-medium mt-8 transition-all duration-200 hover:shadow-md"
+            style={{
+              backgroundColor: "#00ABE4",
+            }}
+            onMouseEnter={(e) => (e.target.style.backgroundColor = "#0090c0")}
+            onMouseLeave={(e) => (e.target.style.backgroundColor = "#00ABE4")}
           >
-            Sign Up
+            Create Account
           </button>
         </form>
+
+        <div className="text-center mt-6">
+          <p className="text-gray-600">
+            Already have an account?{" "}
+            <Link
+              to="/login"
+              className="font-medium hover:underline"
+              style={{ color: "#00ABE4" }}
+            >
+              Sign in
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );

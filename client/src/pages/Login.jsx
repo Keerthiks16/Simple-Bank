@@ -30,34 +30,89 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <form
-        className="bg-white p-6 rounded shadow-md w-80"
-        onSubmit={handleLogin}
-      >
-        <h2 className="text-2xl font-bold mb-4">Login</h2>
-        {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className="w-full px-3 py-2 mb-3 border rounded"
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full px-3 py-2 mb-3 border rounded"
-        />
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
+    <div
+      className="flex justify-center items-center h-screen"
+      style={{ backgroundColor: "#E9F1FA" }}
+    >
+      <div className="w-full max-w-md px-6">
+        <form
+          className="bg-white p-8 rounded-xl shadow-lg border border-gray-100"
+          onSubmit={handleLogin}
         >
-          Login
-        </button>
-      </form>
+          <div className="text-center mb-8">
+            <h2
+              className="text-3xl font-bold mb-2"
+              style={{ color: "#00ABE4" }}
+            >
+              Welcome Back
+            </h2>
+            <p className="text-gray-600">Sign in to your account</p>
+          </div>
+
+          {error && (
+            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6">
+              {error}
+            </div>
+          )}
+
+          <div className="space-y-6">
+            <div>
+              <label className="block text-gray-700 text-sm font-medium mb-2">
+                Username
+              </label>
+              <input
+                type="text"
+                placeholder="Enter your username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent transition-all duration-200"
+                style={{
+                  focusRingColor: "#00ABE4",
+                  outline: "none",
+                }}
+                onFocus={(e) =>
+                  (e.target.style.boxShadow = `0 0 0 2px rgba(0, 171, 228, 0.2)`)
+                }
+                onBlur={(e) => (e.target.style.boxShadow = "none")}
+              />
+            </div>
+
+            <div>
+              <label className="block text-gray-700 text-sm font-medium mb-2">
+                Password
+              </label>
+              <input
+                type="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent transition-all duration-200"
+                style={{
+                  focusRingColor: "#00ABE4",
+                  outline: "none",
+                }}
+                onFocus={(e) =>
+                  (e.target.style.boxShadow = `0 0 0 2px rgba(0, 171, 228, 0.2)`)
+                }
+                onBlur={(e) => (e.target.style.boxShadow = "none")}
+              />
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            className="w-full text-white py-3 rounded-lg font-medium mt-8 transition-all duration-200 hover:shadow-md"
+            style={{
+              backgroundColor: "#00ABE4",
+              ":hover": { backgroundColor: "#0090c0" },
+            }}
+            onMouseEnter={(e) => (e.target.style.backgroundColor = "#0090c0")}
+            onMouseLeave={(e) => (e.target.style.backgroundColor = "#00ABE4")}
+          >
+            Sign In
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

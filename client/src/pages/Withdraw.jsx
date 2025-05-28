@@ -65,13 +65,13 @@ const Withdraw = ({ onClose, onWithdrawSuccess }) => {
         <button
           onClick={handleWithdraw}
           disabled={loading}
-          className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition w-full"
+          className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-700 transition w-full"
         >
           {loading ? "Processing..." : "Withdraw"}
         </button>
 
         {message && <p className="mt-4 text-green-700 text-sm">{message}</p>}
-        {error && <p className="mt-4 text-red-600 text-sm">{error}</p>}
+        {error && <p className="mt-4 text-yellow-600 text-sm">{error}</p>}
 
         <button
           onClick={onClose}
