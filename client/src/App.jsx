@@ -6,6 +6,7 @@ import Signup from "./pages/Signup";
 import { ToastContainer } from "react-toast";
 import { Toaster } from "react-hot-toast";
 import { UserContext } from "./context/UserContext";
+import Blogin from "./pages/Blogin";
 
 const App = () => {
   const { user, loading } = useContext(UserContext);
@@ -16,6 +17,7 @@ const App = () => {
           path="/"
           element={user ? <Home /> : <Navigate to="/login" />}
         ></Route>
+        <Route path="/blogin" element={<Blogin />}></Route>
         <Route
           path="/login"
           element={!user ? <Login /> : <Navigate to="/" />}

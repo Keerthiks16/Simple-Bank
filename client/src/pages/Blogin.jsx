@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import toast from "react-hot-toast";
 
-const Login = () => {
+const Blogin = () => {
   const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -22,8 +22,8 @@ const Login = () => {
         { username, password },
         { withCredentials: true }
       );
-      if (res.data.user.typeofuser === "banker") {
-        toast.error("Banker login not allowed");
+      if (res.data.user.typeofuser === "customer") {
+        toast.error("Customer login not allowed");
         await axios.post(
           "http://localhost:8081/api/auth/logout",
           {},
@@ -32,8 +32,9 @@ const Login = () => {
         setUser(null);
         return;
       }
-      setUser(res.data.user); // Save user globally
-      navigate("/");
+
+      setUser(res.data.user);
+      navigate("/"); // Adjust route as needed
     } catch (err) {
       setError(err.response?.data?.Error || "Login failed");
     }
@@ -42,7 +43,7 @@ const Login = () => {
   return (
     <div
       className="flex justify-center items-center h-screen"
-      style={{ backgroundColor: "#E9F1FA" }}
+      style={{ backgroundColor: "#D6E6F2" }} // Darker tone than #E9F1FA
     >
       <div className="w-full max-w-md px-6">
         <form
@@ -52,11 +53,11 @@ const Login = () => {
           <div className="text-center mb-8">
             <h2
               className="text-3xl font-bold mb-2"
-              style={{ color: "#00ABE4" }}
+              style={{ color: "#0077B6" }}
             >
-              Welcome Back
+              Banker Login
             </h2>
-            <p className="text-gray-600">Sign in to your account</p>
+            <p className="text-gray-600">Access your banking dashboard</p>
           </div>
 
           {error && (
@@ -77,11 +78,10 @@ const Login = () => {
                 onChange={(e) => setUsername(e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent transition-all duration-200"
                 style={{
-                  focusRingColor: "#00ABE4",
                   outline: "none",
                 }}
                 onFocus={(e) =>
-                  (e.target.style.boxShadow = `0 0 0 2px rgba(0, 171, 228, 0.2)`)
+                  (e.target.style.boxShadow = `0 0 0 2px rgba(0, 119, 182, 0.2)`)
                 }
                 onBlur={(e) => (e.target.style.boxShadow = "none")}
               />
@@ -98,11 +98,10 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent transition-all duration-200"
                 style={{
-                  focusRingColor: "#00ABE4",
                   outline: "none",
                 }}
                 onFocus={(e) =>
-                  (e.target.style.boxShadow = `0 0 0 2px rgba(0, 171, 228, 0.2)`)
+                  (e.target.style.boxShadow = `0 0 0 2px rgba(0, 119, 182, 0.2)`)
                 }
                 onBlur={(e) => (e.target.style.boxShadow = "none")}
               />
@@ -113,36 +112,33 @@ const Login = () => {
             type="submit"
             className="w-full text-white py-3 rounded-lg font-medium mt-8 transition-all duration-200 hover:shadow-md"
             style={{
-              backgroundColor: "#00ABE4",
-              ":hover": { backgroundColor: "#0090c0" },
+              backgroundColor: "#0077B6",
             }}
-            onMouseEnter={(e) => (e.target.style.backgroundColor = "#0090c0")}
-            onMouseLeave={(e) => (e.target.style.backgroundColor = "#00ABE4")}
+            onMouseEnter={(e) => (e.target.style.backgroundColor = "#005f91")}
+            onMouseLeave={(e) => (e.target.style.backgroundColor = "#0077B6")}
           >
             Sign In
           </button>
 
-          <div className="text-center mt-6">
+          <div className="text-center mt-6 space-y-2">
             <p className="text-gray-600">
-              Don't have an account?{" "}
+              Don’t have a banker account?{" "}
               <Link
                 to="/signup"
                 className="font-medium hover:underline"
-                style={{ color: "#00ABE4" }}
+                style={{ color: "#0077B6" }}
               >
                 Sign Up
               </Link>
             </p>
-          </div>
-          <div className="text-center mt-2">
             <p className="text-gray-600">
-              Are you a Banker?{" "}
+              Are you a customer?{" "}
               <Link
-                to="/blogin"
+                to="/login"
                 className="font-medium hover:underline"
-                style={{ color: "#00ABE4" }}
+                style={{ color: "#0077B6" }}
               >
-                Go to Banker Login
+                Go to Customer Login
               </Link>
             </p>
           </div>
@@ -152,4 +148,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Blogin;

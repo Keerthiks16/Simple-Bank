@@ -221,7 +221,7 @@ const CustomerHome = ({ user }) => {
       )}
 
       {/* Basic Popup Styling */}
-      <style jsx>{`
+      <style>{`
         .popup {
           position: fixed;
           top: 0;
