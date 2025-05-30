@@ -20,7 +20,7 @@ const Withdraw = ({ onClose, onWithdrawSuccess }) => {
 
     try {
       const res = await axios.post(
-        "http://localhost:8081/api/transactions/withdraw",
+        "https://bank-backend-production-af9c.up.railway.app/api/transactions/withdraw",
         {
           amount: parseFloat(amount),
           description: description || "ATM withdrawal",

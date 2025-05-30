@@ -31,7 +31,7 @@ const Signup = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8081/api/auth/signup", // Update port/path as needed
+        "https://bank-backend-production-af9c.up.railway.app/api/auth/signup", // Update port/path as needed
         formData,
         { withCredentials: true }
       );

@@ -21,7 +21,7 @@ const Transfer = ({ onClose, onTransferSuccess }) => {
 
     try {
       const res = await axios.post(
-        "http://localhost:8081/api/transactions/transfer",
+        "https://bank-backend-production-af9c.up.railway.app/api/transactions/transfer",
         {
           receiverUsername,
           amount: parseFloat(amount),

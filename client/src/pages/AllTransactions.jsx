@@ -15,7 +15,7 @@ const AllTransactions = ({ onClose }) => {
     setError(null);
     try {
       const res = await axios.get(
-        "http://localhost:8081/api/banker/transactions",
+        "https://bank-backend-production-af9c.up.railway.app/api/banker/transactions",
         {
           withCredentials: true,
         }

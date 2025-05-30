@@ -12,9 +12,12 @@ export const UserProvider = ({ children }) => {
   // Fetch current user from backend (if token cookie is present)
   const fetchUser = async () => {
     try {
-      const res = await axios.get("http://localhost:8081/api/auth/me", {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        "https://bank-backend-production-af9c.up.railway.app/api/auth/me",
+        {
+          withCredentials: true,
+        }
+      );
       setUser(res.data.user);
     } catch (err) {
       console.error("Auto-fetch failed:", err);

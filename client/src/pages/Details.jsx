@@ -13,12 +13,18 @@ const Details = ({ onClose }) => {
       try {
         // Assuming user data is already in context and valid
         const [balanceRes, txRes] = await Promise.all([
-          axios.get("http://localhost:8081/api/transactions/balance", {
-            withCredentials: true,
-          }),
-          axios.get("http://localhost:8081/api/transactions/history", {
-            withCredentials: true,
-          }),
+          axios.get(
+            "https://bank-backend-production-af9c.up.railway.app/api/transactions/balance",
+            {
+              withCredentials: true,
+            }
+          ),
+          axios.get(
+            "https://bank-backend-production-af9c.up.railway.app/api/transactions/history",
+            {
+              withCredentials: true,
+            }
+          ),
         ]);
 
         if (balanceRes.data.Status === "Success") {

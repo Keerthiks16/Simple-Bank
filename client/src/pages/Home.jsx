@@ -69,7 +69,7 @@ const Home = () => {
   const handleLogout = async () => {
     try {
       await axios.post(
-        "http://localhost:8081/api/auth/logout",
+        "https://bank-backend-production-af9c.up.railway.app/api/auth/logout",
         {},
         { withCredentials: true }
       );

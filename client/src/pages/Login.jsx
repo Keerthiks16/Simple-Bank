@@ -18,14 +18,14 @@ const Login = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:8081/api/auth/login",
+        "https://bank-backend-production-af9c.up.railway.app/api/auth/login",
         { username, password },
         { withCredentials: true }
       );
       if (res.data.user.typeofuser === "banker") {
         toast.error("Banker login not allowed");
         await axios.post(
-          "http://localhost:8081/api/auth/logout",
+          "https://bank-backend-production-af9c.up.railway.app/api/auth/logout",
           {},
           { withCredentials: true }
         );

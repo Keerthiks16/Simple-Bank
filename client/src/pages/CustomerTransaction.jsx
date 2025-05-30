@@ -16,7 +16,7 @@ const CustomerTransaction = ({ onClose }) => {
 
     try {
       const res = await axios.get(
-        "http://localhost:8081/api/banker/customers",
+        "https://bank-backend-production-af9c.up.railway.app/api/banker/customers",
         {
           withCredentials: true,
         }
@@ -34,7 +34,7 @@ const CustomerTransaction = ({ onClose }) => {
       }
 
       const transactionRes = await axios.get(
-        `http://localhost:8081/api/banker/customers/${matchedCustomer.id}/transactions`,
+        `https://bank-backend-production-af9c.up.railway.app/api/banker/customers/${matchedCustomer.id}/transactions`,
         {
           withCredentials: true,
         }
@@ -88,13 +88,16 @@ const CustomerTransaction = ({ onClose }) => {
               <strong>Email:</strong> {customer.email}
             </p>
             <p>
-              <strong>Balance:</strong> ${customer.balance.toFixed(2)}
+              <strong>Balance:</strong> $
+              {typeof customer.balance === "number"
+                ? customer.balance.toFixed(2)
+                : parseFloat(customer.balance || 0).toFixed(2)}
             </p>
           </div>
         )}
 
         {transactions.length > 0 && (
-          <div className="overflow-auto border rounded p-2 mt-2">
+          <div className="overflow-x-auto border rounded p-2 mt-2">
             <table className="w-full text-left border-collapse min-w-[1000px]">
               <thead>
                 <tr>

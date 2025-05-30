@@ -43,7 +43,7 @@ class AuthController {
       // Hash password
       const hashedPassword = await bcrypt.hash(
         password.toString(),
-        process.env.SALT_ROUNDS
+        parseInt(process.env.SALT_ROUNDS)
       );
 
       // Create user data with proper defaults

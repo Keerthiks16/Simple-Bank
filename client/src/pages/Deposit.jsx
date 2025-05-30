@@ -18,7 +18,7 @@ const Deposit = ({ onClose, onDepositSuccess }) => {
 
     try {
       const res = await axios.post(
-        "http://localhost:8081/api/transactions/deposit",
+        "https://bank-backend-production-af9c.up.railway.app/api/transactions/deposit",
         {
           amount: parseFloat(amount),
           description: description || "Deposit",

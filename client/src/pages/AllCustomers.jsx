@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 // import { UserContext } from "../context/UserContext";
 
@@ -7,6 +7,7 @@ const AllCustomer = ({ onClose }) => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(null);
   //   const { user } = useContext(UserContext);
+
   useEffect(() => {
     const fetchCustomers = async () => {
       setLoading(true);
@@ -14,7 +15,7 @@ const AllCustomer = ({ onClose }) => {
       try {
         // console.log("User:", user);
         const res = await axios.get(
-          "http://localhost:8081/api/banker/customers",
+          "https://bank-backend-production-af9c.up.railway.app/api/banker/customers",
           { withCredentials: true }
         );
 
@@ -63,7 +64,7 @@ const AllCustomer = ({ onClose }) => {
                     <td className="border-b p-2">{customer.username}</td>
                     <td className="border-b p-2">{customer.email}</td>
                     <td className="border-b p-2">
-                      ${customer.balance.toFixed(2)}
+                      ${Number(customer.balance || 0).toFixed(2)}
                     </td>
                   </tr>
                 ))}
