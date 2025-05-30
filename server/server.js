@@ -4,6 +4,8 @@ import cookieParser from "cookie-parser";
 import authRoutes from "./routes/authRoutes.js";
 import transactionRoutes from "./routes/transactionRoutes.js";
 import bankerRoutes from "./routes/bankerRoutes.js";
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
 

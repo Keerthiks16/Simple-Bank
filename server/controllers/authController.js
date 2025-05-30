@@ -1,9 +1,8 @@
 import bcrypt from "bcrypt";
 import User from "../models/User.js";
 import { generateToken } from "../middleware/auth.js";
-
-const SALT_ROUNDS = 10;
-
+import dotenv from "dotenv";
+dotenv.config();
 class AuthController {
   // Get current user info (protected route)
   static async getCurrentUser(req, res) {
@@ -44,7 +43,7 @@ class AuthController {
       // Hash password
       const hashedPassword = await bcrypt.hash(
         password.toString(),
-        SALT_ROUNDS
+        process.env.SALT_ROUNDS
       );
 
       // Create user data with proper defaults
